@@ -1,54 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/models/task_data.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 import 'add_task_screen.dart';
-import 'package:todoey/models/task.dart';
+import 'package:provider/provider.dart';
 
-class TasksScreen extends StatefulWidget {
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'task #1'),
-    Task(name: 'task #2'),
-    Task(name: 'task #3'),
-  ];
-
+class TasksScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.lightBlueAccent,
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            //isScrollControlled controlls if Popup takes all the screen
-            isScrollControlled: true,
-            builder: (context) => SingleChildScrollView(
-                child: Container(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: AddTaskScreen(),
-            )),
-          );
-        },
-        child: Icon(Icons.add),
-      ),
+          backgroundColor: Colors.lightBlueAccent,
+          child: Icon(Icons.add),
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) => SingleChildScrollView(
+                        child: Container(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: AddTaskScreen(),
+                    )));
+          }),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: <Widget>[
           Container(
             padding: EdgeInsets.only(
-              top: 60.0,
-              left: 30.0,
-              right: 30.0,
-              bottom: 30.0,
-            ),
+                top: 60.0, left: 30.0, right: 30.0, bottom: 30.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 CircleAvatar(
                   child: Icon(
                     Icons.list,
@@ -70,10 +53,10 @@ class _TasksScreenState extends State<TasksScreen> {
                   ),
                 ),
                 Text(
-                  '10 tasks left',
+                  '${Provider.of<TaskData>(context).taskCount} Tasks',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18.0,
+                    fontSize: 18,
                   ),
                 ),
               ],
@@ -82,7 +65,6 @@ class _TasksScreenState extends State<TasksScreen> {
           Expanded(
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
-              height: 300.0,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -90,9 +72,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(
-                tasks: tasks,
-              ),
+              child: TasksList(),
             ),
           ),
         ],
