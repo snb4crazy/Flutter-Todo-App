@@ -1,19 +1,24 @@
 import 'package:flutter/foundation.dart';
 import 'task.dart';
+import 'package:collection/collection.dart';
 
 class TaskData extends ChangeNotifier {
-  List<Task> tasks = [
+  List<Task> _tasks = [
     Task(name: 'task #1'),
     Task(name: 'task #2'),
     Task(name: 'task #3'),
   ];
 
   int get taskCount {
-    return tasks.length;
+    return _tasks.length;
+  }
+
+  UnmodifiableListView<Task> get tasks {
+    return UnmodifiableListView(_tasks);
   }
 
   void addTask(String taskTitle) {
-    tasks.add(Task(name: taskTitle));
+    _tasks.add(Task(name: taskTitle));
     notifyListeners();
   }
 }
