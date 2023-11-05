@@ -20,4 +20,22 @@ The objective of this tutorial is to understand how to manage state in Flutter. 
 - Learn about design patterns and why they are useful.
 - Understand how the Provider package works and use it to manage app state.
 
+
+## TODOs after
+- Auth with Firebase
+- Store Tasks list in Firebase: finished and active
+- Add timer to tasks
+- Add project (group) to tasks
+- Add tags to tasks
+- Reporting: finished tasks by day, enable restart task
+- Reporting: time, groups of tasks: weekly and other periods. Filters by tags & groups
+- Reporting: implement Charts (pie and others): tasks, tags, groups in time and percentage
+- Notifications
+- Scheduled tasks
+- Online & Offline use & sync
+- Implement backend: LAMP (Laravel)
+- Backend: emails with reports, scheduled tasks notifications
+- Backend: send email with task for someone else
+
+- Understand what is state and why we need to manage it.
 >This is a companion project to The App Brewery's Complete Flutter Development Bootcamp, check out the full course at [www.appbrewery.co](https://www.appbrewery.co/)
